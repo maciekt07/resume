@@ -24,7 +24,7 @@ jobs:
           docker_image: ghcr.io/xu-cheng/texlive-alpine-small:latest
           pre_compile: |
             tlmgr update --self
-            tlmgr install fontawesome5
+            tlmgr install fontawesome5 accsupp
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
