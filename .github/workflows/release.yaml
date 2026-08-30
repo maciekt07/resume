@@ -1,0 +1,41 @@
+name: Release Resume
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile Resume
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: resume.tex
+          latexmk_use_xelatex: true
+          docker_image: ghcr.io/xu-cheng/texlive-alpine-small:latest
+          pre_compile: |
+            tlmgr update --self
+            tlmgr install fontawesome5
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Resume ${{ github.ref_name }}"
+          files: resume.pdf
+          generate_release_notes: true
+
+      - name: Upload resume to Vercel Blob
+        env:
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          npm ci --prefix .github/scripts
+          node .github/scripts/upload-blob.mjs

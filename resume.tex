@@ -1,0 +1,188 @@
+%  Maciej Twaróg - Resume
+%  Compiler: XeLaTeX
+
+\documentclass[10pt, a4paper]{article}
+
+% Packages
+\usepackage{fontspec}
+\usepackage[margin=1.8cm, top=1.6cm, bottom=1.6cm]{geometry}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{accsupp}
+
+% Fonts
+\setmainfont{Inter}[
+  Path           = fonts/inter/,
+  UprightFont    = *-Regular,
+  BoldFont       = *-SemiBold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-SemiBoldItalic,
+  Extension      =.ttf,
+  RawFeature     = {-calt},
+]
+\newfontfamily\fraunces{Fraunces}[
+  Path           = fonts/fraunces/,
+  UprightFont    = Fraunces72pt-Regular,
+  BoldFont       = Fraunces72pt-Bold,
+  ItalicFont     = Fraunces72pt-Italic,
+  BoldItalicFont = Fraunces72pt-BoldItalic,
+  Extension      =.ttf,
+]
+
+% Colors
+\definecolor{accent}{HTML}{1a1a2e}
+\definecolor{muted}{HTML}{4f4f5e}
+\definecolor{rule}{HTML}{d0d0dd}
+
+% Hyperref
+\hypersetup{colorlinks=false, hidelinks}
+
+% Line-breaking
+\sloppy
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=2000
+\emergencystretch=2em
+
+% hides icon for text parsers
+\newcommand{\hideicon}[1]{\BeginAccSupp{method=plain,ActualText={}}#1\EndAccSupp{}}
+
+% #1 icon  #2 url  #3 label
+\newcommand{\linkitem}[3]{\hideicon{#1}\enspace\href{#2}{#3}}
+
+% Section heading
+\newcommand{\sectionrule}[1]{%
+  \vspace{12pt}%
+  \noindent{\large\bfseries\color{accent}#1}\par%
+  \vspace{-4pt}%
+  \noindent\textcolor{rule}{\hrulefill}\par%
+  \vspace{3pt}%
+}
+
+% List styling
+\setlist[itemize]{
+  leftmargin = 1.4em,
+  itemsep    = 1.5pt,
+  parsep     = 0pt,
+  topsep     = 3pt,
+  partopsep  = 0pt,
+  label      = \textcolor{muted}{\textbullet},
+}
+
+% #1 title  #2 stack  #3 links
+\newcommand{\project}[3]{%
+  \noindent\textbf{#1}\hfill{\small\textcolor{muted}{#2}}\\[4pt]%
+  {\small\textcolor{muted}{#3}}\par\vspace{6pt}%
+}
+
+\begin{document}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Header
+\begin{center}
+  {\fraunces\fontseries{m}\fontsize{30}{34}\selectfont Maciej Twaróg}\\[5pt]
+  {\fraunces\fontsize{12}{15}\selectfont\textcolor{muted}{Full-Stack Web Developer}}\\[9pt]
+  \small\textcolor{muted}{%
+    \hideicon{\faEnvelope}\enspace\href{mailto:contact@maciejtwarog.dev}{contact@maciejtwarog.dev}%
+    \quad\textcolor{rule}{|}\quad%
+    \hideicon{\faGithub}\enspace\href{https://github.com/maciekt07}{github.com/maciekt07}%
+    \quad\textcolor{rule}{|}\quad%
+    \hideicon{\faLinkedin}\enspace\href{https://linkedin.com/in/maciej-twarog}{linkedin.com/in/maciej-twarog}%
+  }
+\end{center}
+
+\vspace{8pt}
+
+\noindent
+Self-taught full-stack developer and recent high school graduate with \textbf{4 years} of hands-on, project-based experience building web applications. Currently seeking an entry-level role where I can keep growing as a developer and contribute to a team.
+
+% Technical Skills
+\sectionrule{Technical Skills}
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{0pt}
+
+\begin{tabular}{@{}
+    >{\small\bfseries\raggedright\arraybackslash}p{4.6cm}
+    @{\hspace{0.6em}}
+    >{\small\raggedright\arraybackslash}p{11.4cm}
+    @{}}
+  Languages               & TypeScript, JavaScript, HTML, CSS, SQL \textcolor{muted}{·} Familiar with Python \\
+  Frameworks \& Libraries & React.js, Next.js, Astro, Node.js, Express, PayloadCMS, Vite, Zustand \\
+  Communication           & REST, WebSockets, WebRTC \\
+  Styling                 & Tailwind CSS, SASS, styled-components, MUI, Motion \\
+  Databases \& ORM        & PostgreSQL, MongoDB, Redis, SQLite, Drizzle ORM \\
+  Testing \& Quality      & Vitest, Playwright, ESLint, Prettier, Biome, lint-staged \\
+  Tools                   & Git, GitHub, GitHub Actions, Cloudflare, Vercel, Docker, Codex (CLI/App), Open Code, Google Analytics, Figma, VS Code \\
+\end{tabular}
+\endgroup
+
+% Projects
+\sectionrule{Projects}
+
+\project%
+  {Math Course Platform}%
+  {Next.js · TypeScript · PostgreSQL · Redis · Stripe · PayloadCMS}%
+  {%
+    \linkitem{\faGithub}{https://github.com/maciekt07/nextjs-math-course}{Source}%
+    \enspace\textcolor{rule}{·}\enspace%
+    \linkitem{\faGlobe}{https://nextjs-math-course.vercel.app}{Demo}%
+  }
+
+Full-stack e-learning platform for selling and delivering online math courses, combining a
+custom CMS, secure payments, and protected video/media delivery on a production-grade stack.
+
+\begin{itemize}
+  \item Implemented full secure Authentication with Google OAuth, One Tap, email verification, block for disposable emails, rate and session limiting with \textbf{Redis} to prevent account sharing
+  \item Achieved \textbf{\textasciitilde100} Lighthouse performance score by splitting large Markdown lessons into sections and rendering only visible content
+  \item Customized headless \textbf{Payload CMS} for Markdown/LaTeX lessons, media, and quizzes; integrated \textbf{Mux} for signed and public video streaming and \textbf{Cloudflare R2} for protected images with blur placeholders
+  \item Integrated a \textbf{Model Context Protocol (MCP)} server into the CMS, letting AI clients draft, edit, and review content with API-key-scoped access control per collection
+  \item Optimized SEO for free lessons: OG image generation and XML sitemaps with per-lesson metadata
+  \item CI/CD with GitHub Actions \& Vercel: automated quality checks (dead code, linting, type safety, tests); production deployments blocked on failure
+\end{itemize}
+
+\vspace{8pt}
+
+\project%
+  {Clean Copy}%
+  {TypeScript · WXT · SCSS · Playwright · GitHub Actions}%
+  {%
+    \linkitem{\faGithub}{https://github.com/maciekt07/clean-copy}{Source}%
+    \enspace\textcolor{rule}{·}\enspace%
+    \linkitem{\faChrome}{https://chromewebstore.google.com/detail/clean-copy/hdofpmcaoldgoghhdhlocpbmoghoeecc}{Chrome Web Store}%
+  }
+
+Browser extension that copies only the user's selected text, preventing websites from injecting unwanted content into the clipboard.
+
+\begin{itemize}
+  \item Built a fully automated CI/CD pipeline with \textbf{GitHub Actions}: runs quality checks and \textbf{Playwright E2E tests}, builds the release, and publishes directly to the \textbf{Chrome Web Store} with a single command
+\end{itemize}
+
+\vspace{8pt}
+
+\project%
+  {Productivity App}%
+  {React.js · TypeScript · Vite · MUI · PWA · WebRTC}%
+  {%
+    \linkitem{\faGithub}{https://github.com/maciekt07/TodoApp}{Source}%
+    \enspace\textcolor{rule}{·}\enspace%
+    \linkitem{\faGlobe}{https://react-cool-todo-app.netlify.app/}{Demo}%
+  }
+
+Privacy focused task management Progressive Web App with \textbf{300+ active users} and \textbf{380+ GitHub stars}.
+
+\begin{itemize}
+  \item \textbf{P2P WebRTC} device synchronization via QR Code scan
+  \item Full offline support with \textbf{PWA} service worker caching; installable on all platforms
+  \item JSON import/export for data portability; link-based task sharing
+  \item Integrated \textbf{on-device AI} (Gemini Nano) via Chrome's experimental LanguageModel API for contextual suggestions
+\end{itemize}
+
+\end{document}

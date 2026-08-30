@@ -1,0 +1,10 @@
+*.out
+*.log
+*.aux
+*.gz
+*.synctex.gz
+*.synctex(busy)
+*.bak0
+*.pdf
+*.DS_Store
+*node_modules
