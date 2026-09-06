@@ -8,6 +8,8 @@ try {
     access: "public",
     addRandomSuffix: false,
     allowOverwrite: true,
+    cacheControlMaxAge: 86400, // 24h
+    contentType: "application/pdf",
   });
 
   console.log(`Uploaded ${filePath}`);
