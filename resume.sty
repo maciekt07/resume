@@ -1,0 +1,105 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{resume}[Resume styling]
+
+% Packages
+\RequirePackage{fontspec}
+\RequirePackage[
+  left=1.5cm,
+  right=1.5cm,
+  top=1.4cm,
+  bottom=1.4cm
+]{geometry}
+\RequirePackage{fontawesome5}
+\RequirePackage{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage{enumitem}
+\RequirePackage{parskip}
+\RequirePackage{microtype}
+\RequirePackage{array}
+\RequirePackage{accsupp}
+
+% Fonts
+\setmainfont{Inter}[
+  Path           = fonts/inter/,
+  UprightFont    = *-Regular,
+  BoldFont       = *-SemiBold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-SemiBoldItalic,
+  Extension      =.ttf,
+  RawFeature     = {-calt},
+]
+\newfontfamily\fraunces{Fraunces}[
+  Path           = fonts/fraunces/,
+  UprightFont    = Fraunces72pt-Regular,
+  BoldFont       = Fraunces72pt-Bold,
+  ItalicFont     = Fraunces72pt-Italic,
+  BoldItalicFont = Fraunces72pt-BoldItalic,
+  Extension      =.ttf,
+]
+
+% Colors
+\definecolor{accent}{HTML}{1a1a2e}
+\definecolor{muted}{HTML}{4f4f5e}
+\definecolor{rule}{HTML}{d0d0dd}
+
+% Hyperref
+\hypersetup{colorlinks=false, hidelinks}
+
+% Line-breaking
+\sloppy
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=2000
+\emergencystretch=2em
+
+% hides icon for text parsers
+\newcommand{\hideicon}[1]{\BeginAccSupp{method=plain,ActualText={}}#1\EndAccSupp{}}
+
+% #1 icon  #2 url  #3 label
+\newcommand{\linkitem}[3]{\hideicon{#1}\enspace\href{#2}{#3}}
+
+% Separators
+\newcommand{\dotsep}{\enspace\textcolor{rule}{\textperiodcentered}\enspace}
+\newcommand{\pipesep}{\quad\textcolor{rule}{|}\quad}
+
+% Section heading
+\newcommand{\sectionrule}[1]{%
+  \vspace{12pt}%
+  \noindent{\large\bfseries\color{accent}#1}\par%
+  \vspace{-4pt}%
+  \noindent\textcolor{rule}{\hrulefill}\par%
+  \vspace{3pt}%
+}
+
+% List styling
+\setlist[itemize]{
+  leftmargin = 1.4em,
+  itemsep    = 1.5pt,
+  parsep     = 0pt,
+  topsep     = 3pt,
+  partopsep  = 0pt,
+  label      = \textcolor{muted}{\textbullet},
+}
+
+% #1 title  #2 stack  #3 links
+\newcommand{\project}[3]{%
+  \noindent\textbf{#1}\hfill{\small\textcolor{muted}{#2}}\\[4pt]%
+  {\small\textcolor{muted}{#3}}\par\vspace{6pt}%
+}
+
+% Skills table
+\newcommand{\skillstable}[1]{%
+  \begingroup
+  \renewcommand{\arraystretch}{1.4}
+  \setlength{\tabcolsep}{0pt}
+  \begin{tabular}{@{}
+      >{\small\bfseries\raggedright\arraybackslash}p{4.6cm}
+      @{\hspace{0.6em}}
+      >{\small\raggedright\arraybackslash}p{11.4cm}
+      @{}}
+  #1
+  \end{tabular}
+  \endgroup
+}
+
+\endinput
