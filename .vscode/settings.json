@@ -1,10 +1,4 @@
 {
-  "latex-workshop.latex.recipes": [
-    {
-      "name": "xelatex",
-      "tools": ["xelatex"]
-    }
-  ],
   "latex-workshop.latex.tools": [
     {
       "name": "xelatex",
@@ -15,7 +9,17 @@
         "-halt-on-error",
         "%DOC%"
       ]
+    },
+    {
+      "name": "totxt",
+      "command": "sh",
+      "args": ["parse.sh", "%DOCFILE%.pdf", "%DOCFILE%-parsed.txt"]
     }
   ],
-  "editor.minimap.enabled": false
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "xelatex + txt",
+      "tools": ["xelatex", "totxt"]
+    }
+  ]
 }
