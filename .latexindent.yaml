@@ -1,0 +1,7 @@
+defaultIndent: "  "
+
+removeTrailingWhitespace: 1
+
+modifyLineBreaks:
+  preserveBlankLines: 1
+  condenseMultipleBlankLinesInto: 1

@@ -4,6 +4,9 @@
 *.gz
 *.synctex.gz
 *.synctex(busy)
+*.fdb_latexmk
+*.fls
+*.xdv
 *.bak0
 *.pdf
 *.DS_Store

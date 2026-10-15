@@ -1,0 +1,9 @@
+.git
+.github/scripts/node_modules
+.DS_Store
+*.aux
+*.log
+*.out
+*.pdf
+*.synctex.gz
+*.txt

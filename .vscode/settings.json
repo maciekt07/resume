@@ -1,12 +1,19 @@
 {
+  "[latex]": {
+    "editor.defaultFormatter": "James-Yu.latex-workshop",
+    "editor.formatOnSave": true
+  },
+
   "latex-workshop.latex.tools": [
     {
-      "name": "xelatex",
-      "command": "xelatex",
+      "name": "latexmk-xelatex",
+      "command": "latexmk",
       "args": [
+        "-xelatex",
         "-synctex=1",
         "-interaction=nonstopmode",
         "-halt-on-error",
+        "-file-line-error",
         "%DOC%"
       ]
     },
@@ -16,10 +23,24 @@
       "args": ["parse.sh", "%DOCFILE%.pdf", "%DOCFILE%-parsed.txt"]
     }
   ],
+  "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.formatting.latexindent.path": "latexindent",
+  "latex-workshop.formatting.latexindent.args": [
+    "-c",
+    "%DIR%/",
+    "-l",
+    "-m",
+    "%TMPFILE%",
+    "-y=defaultIndent: '%INDENT%'"
+  ],
+  "latex-workshop.message.dvipdfmxlog.exclude": [
+    "Creating ToUnicode CMap failed for .*FontAwesome5.*",
+    "Failed to load ToUnicode CMap for font .*FontAwesome5.*"
+  ],
   "latex-workshop.latex.recipes": [
     {
-      "name": "xelatex + txt",
-      "tools": ["xelatex", "totxt"]
+      "name": "latexmk (XeLaTeX) + txt",
+      "tools": ["latexmk-xelatex", "totxt"]
     }
   ]
 }

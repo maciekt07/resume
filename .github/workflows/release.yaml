@@ -21,10 +21,8 @@ jobs:
         with:
           root_file: resume.tex
           latexmk_use_xelatex: true
-          docker_image: ghcr.io/xu-cheng/texlive-alpine-small:latest
-          pre_compile: |
-            tlmgr update --self
-            tlmgr install fontawesome5 accsupp
+          docker_image: ghcr.io/xu-cheng/texlive-alpine-small@sha256:2f81f71846f6416526c63f3fbbbc59733c2cdf7e69fcb7aa99adba186ccb2f09
+          pre_compile: sh .devcontainer/install-tex-packages.sh
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
