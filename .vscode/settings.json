@@ -23,6 +23,8 @@
       "args": ["parse.sh", "%DOCFILE%.pdf", "%DOCFILE%-parsed.txt"]
     }
   ],
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoBuild.onSave.files.ignore": [],
   "latex-workshop.formatting.latex": "latexindent",
   "latex-workshop.formatting.latexindent.path": "latexindent",
   "latex-workshop.formatting.latexindent.args": [
